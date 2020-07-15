@@ -1,0 +1,80 @@
+/**
+ * Internal block libraries
+ */
+const { __ } = wp.i18n;
+const { registerBlockType } = wp.blocks;
+const { RichText } = wp.editor;
+
+/**
+ * Register quote block
+ */
+export default registerBlockType("gccustom/quote-box", {
+  title: __("Quote Box", "gccustom"),
+  description: __(
+    "A simple quote box",
+    "gccustom"
+  ),
+  category: "common",
+  icon: "admin-comments",
+  keywords: [
+    __("quote", "gccustom"),
+    __("box", "gccustom"),
+    __("quotebox", "gccustom")
+  ],
+  supports: {
+    html: false
+  },
+  attributes: {
+    message: {
+      type: "array",
+      source: "children",
+      selector: ".message-body"
+    },
+		title: {
+			type: "array",
+			source: "children",
+			selector: ".title"
+		}
+  },
+  edit: props => {
+    const {
+      attributes: { message, title },
+      className,
+      setAttributes
+    } = props;
+    const onChangeMessage = message => {
+      setAttributes({ message });
+    };
+		const onChangeTitle = title => {
+			setAttributes({title});
+		}
+    return (
+      <div className={className}>
+        <RichText
+          tagName="h5"
+          placeholder={__("Title", "gccustom")}
+          onChange={onChangeTitle}
+          value={title}
+        />
+        <RichText
+          tagName="div"
+          multiline="p"
+          placeholder={__("Content", "gccustom")}
+          onChange={onChangeMessage}
+          value={message}
+        />
+      </div>
+    );
+  },
+  save: props => {
+    const {
+      attributes: { message, title }
+    } = props;
+    return (
+      <div>
+        <h5 class="title">{title}</h5>
+        <div class="message-body">{message}</div>
+      </div>
+    );
+  }
+});
