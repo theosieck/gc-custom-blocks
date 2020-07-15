@@ -8,17 +8,17 @@ const { RichText } = wp.editor;
 /**
  * Register quote block
  */
-export default registerBlockType("gccustom/reference-box", {
-  title: __("References", "gccustom"),
+export default registerBlockType("gccustom/publication", {
+  title: __("Publication", "gccustom"),
   description: __(
-    "A block for APA references",
+    "A block for a single APA-style publication reference",
     "gccustom"
   ),
   category: "common",
   icon: "welcome-learn-more",
   keywords: [
     __("references", "gccustom"),
-    __("box", "gccustom"),
+    __("publications", "gccustom"),
     __("apa", "gccustom")
   ],
   supports: {
@@ -42,11 +42,10 @@ export default registerBlockType("gccustom/reference-box", {
     };
     return (
       <div className={className}>
-        <h4>References</h4>
         <RichText
           tagName="div"
-          multiline="p"
-          placeholder={__("Type or paste your reference list here", "gccustom")}
+					multiline="p"
+          placeholder={__("Type or paste your publication here", "gccustom")}
           onChange={onChangeMessage}
           value={message}
         />
@@ -59,7 +58,6 @@ export default registerBlockType("gccustom/reference-box", {
     } = props;
     return (
       <div>
-				<h4>References</h4>
         <div class="message-body">{message}</div>
       </div>
     );

@@ -9,4 +9,5 @@ import "./i18n.js";
 import "./fancy-quote-box/";
 import "./further-reading/";
 import "./quote-box/";
-import "./references";
+import "./references/";
+import "./publication/";
