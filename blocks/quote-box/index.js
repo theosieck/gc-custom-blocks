@@ -82,7 +82,7 @@ export default registerBlockType("gccustom/quote-box", {
   },
   save: props => {
     const {
-      attributes: { message, title }
+      attributes: { message, title, button }
     } = props;
     return (
       <div>
