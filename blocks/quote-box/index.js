@@ -34,11 +34,16 @@ export default registerBlockType("gccustom/quote-box", {
 			type: "array",
 			source: "children",
 			selector: ".title"
+		},
+		button: {
+			type: "array",
+			source: "children",
+			selector: ".button"
 		}
   },
   edit: props => {
     const {
-      attributes: { message, title },
+      attributes: { message, title, button },
       className,
       setAttributes
     } = props;
@@ -47,7 +52,10 @@ export default registerBlockType("gccustom/quote-box", {
     };
 		const onChangeTitle = title => {
 			setAttributes({title});
-		}
+		};
+		const onChangeButton = button => {
+			setAttributes({button});
+		};
     return (
       <div className={className}>
         <RichText
@@ -63,6 +71,12 @@ export default registerBlockType("gccustom/quote-box", {
           onChange={onChangeMessage}
           value={message}
         />
+				<RichText
+					tagName="button"
+					placeholder={__("Button text", "gccustom")}
+          onChange={onChangeButton}
+          value={button}
+				/>
       </div>
     );
   },
@@ -74,6 +88,7 @@ export default registerBlockType("gccustom/quote-box", {
       <div>
         <h5 class="title">{title}</h5>
         <div class="message-body">{message}</div>
+				<button class="button">{button}</button>
       </div>
     );
   }

@@ -25,21 +25,14 @@
 	);
 }
 
-// enqueue front end and editor js and css
+// enqueue front end and editor js
 add_action('enqueue_block_assets','gc_custom_block_scripts');
 function gc_custom_block_scripts() {
 	$block_path = '/assets/js/frontend.blocks.js';
-	$style_path = '/assets/css/blocks.style.css';
 	wp_enqueue_script(
 		'gc-custom-blocks-frontend-js',
 		plugins_url($block_path, __FILE__),
 		[ 'wp-i18n', 'wp-element', 'wp-blocks', 'wp-components', 'wp-api', 'wp-editor' ],
     filemtime( plugin_dir_path(__FILE__) . $block_path )
-	);
-	wp_enqueue_style(
-		'gc-custom-blocks-css',
-		plugins_url($style_path, __FILE__),
-		null,
-		filemtime(plugin_dir_path(__FILE__) . $style_path)
 	);
 }

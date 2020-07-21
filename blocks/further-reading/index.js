@@ -1,11 +1,6 @@
 import ReactHtmlParser from 'react-html-parser';
 
 /**
- * Block dependencies
- */
-import "./editor.scss";
-
-/**
  * Internal block libraries
  */
 const { __ } = wp.i18n;
